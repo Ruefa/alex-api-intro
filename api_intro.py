@@ -74,6 +74,20 @@ def get_directory(access_token, apiUrl):
                   f'Please try a different search query.')
 
 
+def check_request_errors(request):
+    """Checks if a request has returned with an error
+    returns False if the status code is equal to 200, otherwise returns True"""
+
+    error = True
+
+    if request.status_code == 200:
+        error = False
+    else:
+        print(request.json()['userMessage'])
+
+    return error
+
+
 if __name__ == '__main__':
     CONFIG_API = 'api'
     CONFIG_OAUTH = 'oauth2'
