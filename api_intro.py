@@ -44,7 +44,7 @@ def get_person(access_token, apiUrl):
         responseData = response['data']
         if len(responseData) < 1:
             print(f'No data found for \"{onid}\". '
-                  + 'Please try a different search query.')
+                  f'Please try a different search query.')
 
     return responseData
 
@@ -68,7 +68,7 @@ def get_directory(access_token, apiUrl):
         responseData = response['data']
         if len(responseData) < 1:
             print(f'No data found for \"{query}\". '
-                  + 'Please try a different search query.')
+                  f'Please try a different search query.')
     return response['data']
 
 
