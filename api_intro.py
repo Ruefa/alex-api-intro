@@ -33,14 +33,15 @@ def get_person(access_token, apiUrl):
 
 
 def get_directory(access_token, apiUrl):
-    onid = input('Enter Person\'s ONID: ')
+    osuId = input('Enter Directory Search Query: ')
 
-    params = {'onid': onid}
+    # params = {'q': onid}
     headers = {'Content-Type': 'application/json',
                'Authorization': f'Bearer {access_token}'}
 
-    request = requests.get(apiUrl, params=params, headers=headers)
+    request = requests.get(f'{apiUrl}/{osuId}', headers=headers)
     response = request.json()
+    print(response)
     return response['data']
 
 
@@ -49,9 +50,13 @@ if __name__ == '__main__':
     with open(configPath, 'r') as configFile:
         config = json.load(configFile)
         personsUrl = config['api']['persons_url']
-        directoryUrl = config['api']['locations_url']
+        directoryUrl = config['api']['directory_url']
         authUrl = config['oauth2']['auth_api_url']
         clientId = config['oauth2']['client_id']
         clientSecret = config['oauth2']['client_secret']
 
     access_token = get_access_token(authUrl, clientId, clientSecret)
+    personsData = get_person(access_token, personsUrl)
+
+    for person in personsData:
+        print(f'Name: {person["attributes"]["firstName"]}')
