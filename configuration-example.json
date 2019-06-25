@@ -1,0 +1,11 @@
+{
+    "api": {
+        "directory_url": "https://api.oregonstate.edu/v1/directory",
+        "persons_url": "https://api.oregonstate.edu/v1/persons"
+    },
+    "oauth2": {
+        "auth_api_url": "https://api.oregonstate.edu/oauth2/token",
+        "client_id": "your_client_id",
+        "client_secret": "your_client_secret"
+    }
+}
