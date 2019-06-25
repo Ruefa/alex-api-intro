@@ -49,6 +49,11 @@ def get_person(access_token, apiUrl):
     return responseData
 
 
+# Requests OSU directory information using api
+# requires an access token and api url to be passed in
+# asks for search query from user
+# returns data if the search query finds some.
+# If no data is found the user is asked again to enter a query
 def get_directory(access_token, apiUrl):
     responseData = []
     while len(responseData) < 1:
