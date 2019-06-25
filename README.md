@@ -5,7 +5,7 @@ Introduction to using OSU's APIs
 ## Configuration
 
 1. Register an application on [OSU Developer Portal](https://developer.oregonstate.edu/)
-2. Get `client_id` and `client_secret` from your app, then copy[configuration-example.json](./configuration-example.json) as `configuration.json` and fill in the oauth2 section:
+2. Get `client_id` and `client_secret` from your app, then copy [configuration-example.json](./configuration-example.json) as `configuration.json` and fill in the oauth2 section:
 
     ```json
     "oauth2": {
