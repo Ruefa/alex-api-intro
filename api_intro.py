@@ -75,14 +75,17 @@ def get_directory(access_token, apiUrl):
 
 
 if __name__ == '__main__':
+    CONFIG_API = 'api'
+    CONFIG_OAUTH = 'oauth2'
+
     config_path = sys.argv[1]
     with open(config_path, 'r') as configFile:
         config = json.load(configFile)
-        persons_url = config['api']['persons_url']
-        directory_url = config['api']['directory_url']
-        auth_url = config['oauth2']['auth_api_url']
-        client_id = config['oauth2']['client_id']
-        client_secret = config['oauth2']['client_secret']
+        persons_url = config[CONFIG_API]['persons_url']
+        directory_url = config[CONFIG_API]['directory_url']
+        auth_url = config[CONFIG_OAUTH]['auth_api_url']
+        client_id = config[CONFIG_OAUTH]['client_id']
+        client_secret = config[CONFIG_OAUTH]['client_secret']
 
     access_token = get_access_token(auth_url, client_id, client_secret)
     directory_data = get_directory(access_token, directory_url)
