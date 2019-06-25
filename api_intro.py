@@ -41,13 +41,14 @@ def get_person(access_token, api_url):
                    'Authorization': f'Bearer {access_token}'}
 
         request = requests.get(api_url, params=params, headers=headers)
-        response = request.json()
-        response_data = response['data']
-        if response_data:
-            return response_data
-        else:
-            print(f'No data found for \"{onid}\". '
-                  f'Please try a different search query.')
+        if not check_request_errors(request):
+            response = request.json()
+            response_data = response['data']
+            if response_data:
+                return response_data
+            else:
+                print(f'No data found for \"{onid}\". '
+                      f'Please try a different search query.')
 
 
 def get_directory(access_token, apiUrl):
@@ -65,13 +66,14 @@ def get_directory(access_token, apiUrl):
                    'Authorization': f'Bearer {access_token}'}
 
         request = requests.get(apiUrl, params=params, headers=headers)
-        response = request.json()
-        response_data = response['data']
-        if response_data:
-            return response['data']
-        else:
-            print(f'No data found for \"{query}\". '
-                  f'Please try a different search query.')
+        if not check_request_errors(request):
+            response = request.json()
+            response_data = response['data']
+            if response_data:
+                return response['data']
+            else:
+                print(f'No data found for \"{query}\". '
+                      f'Please try a different search query.')
 
 
 def check_request_errors(request):
