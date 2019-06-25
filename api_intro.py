@@ -29,12 +29,11 @@ def get_access_token(authUrl, id, secret):
 
 
 def get_person(access_token, api_url):
-    response_data = []
-    while len(response_data) < 1:
     """Make get request for information about a person at osu
     Read in ONID from user
     requires access_token retrieved in get_access_token()"""
 
+    while True:
         onid = input('Enter Person\'s ONID: ')
 
         params = {'onid': onid}
@@ -44,22 +43,21 @@ def get_person(access_token, api_url):
         request = requests.get(api_url, params=params, headers=headers)
         response = request.json()
         response_data = response['data']
-        if len(response_data) < 1:
+        if response_data:
+            return response_data
+        else:
             print(f'No data found for \"{onid}\". '
                   f'Please try a different search query.')
 
-    return response_data
-
 
 def get_directory(access_token, apiUrl):
-    response_data = []
-    while len(response_data) < 1:
     """Requests OSU directory information using api
     requires an access token and api url to be passed in
     asks for search query from user
     returns data if the search query finds some.
     If no data is found the user is asked again to enter a query"""
 
+    while True:
         query = input('Enter Directory Search Query: ')
 
         params = {'q': query}
@@ -69,10 +67,11 @@ def get_directory(access_token, apiUrl):
         request = requests.get(apiUrl, params=params, headers=headers)
         response = request.json()
         response_data = response['data']
-        if len(response_data) < 1:
+        if response_data:
+            return response['data']
+        else:
             print(f'No data found for \"{query}\". '
                   f'Please try a different search query.')
-    return response['data']
 
 
 if __name__ == '__main__':
