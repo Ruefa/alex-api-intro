@@ -5,6 +5,8 @@ import requests
 personsUrl = "https://api.oregonstate.edu/v1/persons"
 authUrl = "https://api.oregonstate.edu/oauth2/token"
 
+# Request access_token from osu api
+# Read in consumer key and consumer secret from user
 def get_access_token():
     key = input("Enter Consumer Key: ")
     secret = input("Enter Consumer Secret: ")
@@ -15,6 +17,9 @@ def get_access_token():
 
     return response["access_token"]
 
+# Make get request for information about a person at osu
+# Read in ONID from user
+# requires access_token retrieved in get_access_token()
 def get_person(access_token):
     onid = input("Enter Person's ONID: ")
 
