@@ -15,6 +15,16 @@ def get_access_token():
 
     return response["access_token"]
 
+def get_person(access_token):
+    onid = input("Enter Person's ONID: ")
+
+    params = {'onid': onid}
+    headers = {"Content-Type": "application/json", "Authorization": "Bearer " + access_token}
+
+    request = requests.get(personsUrl, params=params, headers=headers)
+    response = request.json()
+    return response["data"]
+
 
 if __name__ == "__main__":
     access_token = get_access_token()
