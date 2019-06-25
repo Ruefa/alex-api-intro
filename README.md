@@ -20,10 +20,10 @@ Introduction to using OSU's APIs
 1. Install dependencies via pip:
 
     ```shell
-    $ pip install -r requirements.txt
+    $ pip3 install -r requirements.txt
     ```
 2. Run the script:
 
     ```shell
-    $ python api_intro.py --config path/to/configuration.json
+    $ python3 api_intro.py path/to/configuration.json
     ```
