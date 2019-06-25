@@ -6,9 +6,10 @@ import sys
 import requests
 
 
-# Request access_token from osu api
-# Read in consumer key and consumer secret from user
 def get_access_token(authUrl, id, secret):
+    """Request access_token from osu api
+    Read in consumer key and consumer secret from user"""
+
     data = {'client_id': id, 'client_secret': secret,
             'grant_type': 'client_credentials'}
     request = requests.post(authUrl, data=data)
@@ -27,12 +28,13 @@ def get_access_token(authUrl, id, secret):
         exit()
 
 
-# Make get request for information about a person at osu
-# Read in ONID from user
-# requires access_token retrieved in get_access_token()
 def get_person(access_token, api_url):
     response_data = []
     while len(response_data) < 1:
+    """Make get request for information about a person at osu
+    Read in ONID from user
+    requires access_token retrieved in get_access_token()"""
+
         onid = input('Enter Person\'s ONID: ')
 
         params = {'onid': onid}
@@ -49,14 +51,15 @@ def get_person(access_token, api_url):
     return response_data
 
 
-# Requests OSU directory information using api
-# requires an access token and api url to be passed in
-# asks for search query from user
-# returns data if the search query finds some.
-# If no data is found the user is asked again to enter a query
 def get_directory(access_token, apiUrl):
     response_data = []
     while len(response_data) < 1:
+    """Requests OSU directory information using api
+    requires an access token and api url to be passed in
+    asks for search query from user
+    returns data if the search query finds some.
+    If no data is found the user is asked again to enter a query"""
+
         query = input('Enter Directory Search Query: ')
 
         params = {'q': query}
