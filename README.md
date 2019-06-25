@@ -8,7 +8,7 @@ Introduction to using OSU's APIs
 
 ## Usage
 
-1. Install dependencies via pipL
+1. Install dependencies via pip:
 
     ```shell
     $ pip install -r requirements.txt
