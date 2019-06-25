@@ -50,15 +50,20 @@ def get_person(access_token, apiUrl):
 
 
 def get_directory(access_token, apiUrl):
-    osuId = input('Enter Directory Search Query: ')
+    responseData = []
+    while len(responseData) < 1:
+        query = input('Enter Directory Search Query: ')
 
-    # params = {'q': onid}
-    headers = {'Content-Type': 'application/json',
-               'Authorization': f'Bearer {access_token}'}
+        params = {'q': query}
+        headers = {'Content-Type': 'application/json',
+                   'Authorization': f'Bearer {access_token}'}
 
-    request = requests.get(f'{apiUrl}/{osuId}', headers=headers)
-    response = request.json()
-    print(response)
+        request = requests.get(apiUrl, params=params, headers=headers)
+        response = request.json()
+        responseData = response['data']
+        if len(responseData) < 1:
+            print(f'No data found for \"{query}\". '
+                  + 'Please try a different search query.')
     return response['data']
 
 
@@ -73,7 +78,7 @@ if __name__ == '__main__':
         clientSecret = config['oauth2']['client_secret']
 
     access_token = get_access_token(authUrl, clientId, clientSecret)
-    personsData = get_person(access_token, personsUrl)
+    directoryData = get_directory(access_token, directoryUrl)
 
-    for person in personsData:
-        print(f'Name: {person["attributes"]["firstName"]}')
+    for directory in directoryData:
+        print(directory['attributes']['firstName'])
