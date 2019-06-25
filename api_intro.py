@@ -23,7 +23,7 @@ def get_access_token():
 def get_person(access_token):
     onid = input("Enter Person's ONID: ")
 
-    params = {'onid': onid}
+    params = {"onid": onid}
     headers = {"Content-Type": "application/json", "Authorization": "Bearer " + access_token}
 
     request = requests.get(personsUrl, params=params, headers=headers)
