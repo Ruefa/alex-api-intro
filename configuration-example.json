@@ -1,6 +1,7 @@
 {
     "api": {
-        "locations_url": "https://api.oregonstate.edu/v1/services"
+        "locations_url": "https://api.oregonstate.edu/v1/services",
+        "persons_url": "https://api.oregonstate.edu/v1/persons"
     },
     "oauth2": {
         "auth_api_url": "https://api.oregonstate.edu/oauth2/token",
