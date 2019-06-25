@@ -18,12 +18,12 @@ def get_access_token(authUrl, id, secret):
         response['access_token']
         return response['access_token']
     except KeyError:
-        if response["ErrorCode"] == "invalid_client":
-            print("Client Id or Client Secret invalid. "
-                  + "Please check your configuration.json "
-                  + "file and try again.")
+        if request.status_code != 200:
+            print('Client Id or Client Secret invalid. '
+                  f'Please check your configuration.json '
+                  f'file and try again.')
         else:
-            print("Unknown error occurred.")
+            print('Unknown error occurred.')
         exit()
 
 
