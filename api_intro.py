@@ -28,3 +28,7 @@ def get_person(access_token):
 
 if __name__ == "__main__":
     access_token = get_access_token()
+    personData = get_person(access_token)
+    
+    for person in personData:
+        print("Person's Name: " + person["attributes"]["firstName"])
