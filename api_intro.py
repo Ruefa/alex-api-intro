@@ -28,7 +28,7 @@ def get_person(access_token):
 
     params = {"onid": onid}
     headers = {"Content-Type": "application/json",
-               "Authorization": "Bearer " + access_token}
+               "Authorization": f"Bearer {access_token}"}
 
     request = requests.get(personsUrl, params=params, headers=headers)
     response = request.json()
