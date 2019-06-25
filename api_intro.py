@@ -14,22 +14,39 @@ def get_access_token(authUrl, id, secret):
     request = requests.post(authUrl, data=data)
     response = request.json()
 
-    return response['access_token']
+    try:
+        response['access_token']
+        return response['access_token']
+    except KeyError:
+        if response["ErrorCode"] == "invalid_client":
+            print("Client Id or Client Secret invalid. "
+                  + "Please check your configuration.json "
+                  + "file and try again.")
+        else:
+            print("Unknown error occurred.")
+        exit()
 
 
 # Make get request for information about a person at osu
 # Read in ONID from user
 # requires access_token retrieved in get_access_token()
 def get_person(access_token, apiUrl):
-    onid = input('Enter Person\'s ONID: ')
+    responseData = []
+    while len(responseData) < 1:
+        onid = input('Enter Person\'s ONID: ')
 
-    params = {'onid': onid}
-    headers = {'Content-Type': 'application/json',
-               'Authorization': f'Bearer {access_token}'}
+        params = {'onid': onid}
+        headers = {'Content-Type': 'application/json',
+                   'Authorization': f'Bearer {access_token}'}
 
-    request = requests.get(apiUrl, params=params, headers=headers)
-    response = request.json()
-    return response['data']
+        request = requests.get(apiUrl, params=params, headers=headers)
+        response = request.json()
+        responseData = response['data']
+        if len(responseData) < 1:
+            print(f'No data found for \"{onid}\". '
+                  + 'Please try a different search query.')
+
+    return responseData
 
 
 def get_directory(access_token, apiUrl):
