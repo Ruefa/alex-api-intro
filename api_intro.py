@@ -32,7 +32,7 @@ def get_person(access_token, apiUrl):
     return response['data']
 
 
-def get_locations(access_token, apiUrl):
+def get_directory(access_token, apiUrl):
     onid = input('Enter Person\'s ONID: ')
 
     params = {'onid': onid}
@@ -49,10 +49,9 @@ if __name__ == '__main__':
     with open(configPath, 'r') as configFile:
         config = json.load(configFile)
         personsUrl = config['api']['persons_url']
-        locationsUrl = config['api']['locations_url']
+        directoryUrl = config['api']['locations_url']
         authUrl = config['oauth2']['auth_api_url']
         clientId = config['oauth2']['client_id']
         clientSecret = config['oauth2']['client_secret']
 
     access_token = get_access_token(authUrl, clientId, clientSecret)
-
