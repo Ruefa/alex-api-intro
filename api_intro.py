@@ -14,3 +14,7 @@ def get_access_token():
     response = request.json()
 
     return response["access_token"]
+
+
+if __name__ == "__main__":
+    access_token = get_access_token()
